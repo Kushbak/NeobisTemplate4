@@ -8,7 +8,7 @@
 	     -o-transition: @arguments;
 	        transition: @arguments;
 }
-.tranform-translate(@value1, @value2){ 
+.transform-translate(@value1, @value2){ 
 	-webkit-transform: translate(@value1, @value2);
 	   -moz-transform: translate(@value1, @value2);
 	    -ms-transform: translate(@value1, @value2);
@@ -80,7 +80,7 @@ button{
     padding: 15px 45px;
     text-transform: uppercase;
     border-radius: 30px;
-    font-size: 1rem;
+    font-size: 0.8rem;
 	&:hover{
 		background: none;
 		color: @color;
@@ -97,6 +97,9 @@ button{
 	max-width: 1140px;
 	margin: 0 auto;
 }
+.burger, .burger-input{
+	display: none;
+} 
 .title{
 	font-size: 2.2rem;
 	font-weight: bold;
@@ -409,6 +412,9 @@ header{
 
 
 
+
+
+
 @media (min-width: 576px){
 	.wrapper{
 		max-width: 540px;
@@ -432,12 +438,58 @@ header{
 
 
 
+
+
+
 @media (max-width: 768px){
 	:root{
 		font-size: 14px;
 	}
 	.form {
 	    width: 60%;
+    }
+    .burger{
+    	display: block;
+    	margin: 5px 0;
+    	&__btn{
+    		display: block;
+    		position: relative;
+		    width: 50px;
+		    height: 50px;
+	    	-webkit-border-radius: 50%;
+	    	        border-radius: 50%;
+	    	background: #FFF;
+    	}
+    	&__line, 
+    	&__line::after, 
+    	&__line::before{
+    		position: absolute;
+    		top: 50%;
+    		left: 50%;
+    		margin: -1px 0 0 -10px; 
+    		width: 20px;
+    		height: 2px;
+    		background: #000;  
+    	}
+    	&__line::before{
+    		content: ""; 
+    		.transform-translate(0, 6px);
+    	}
+    	&__line::after{
+    		content: ""; 
+    		.transform-translate(0, -6px);
+    	}
+    }
+
+	.burger-input:checked ~ .navbar{
+		display: flex;
+	} 
+    .navbar{
+    	display: none;
+    	.f-direction(column); 
+    	.a-items(center);
+	    background: rgba(0, 0, 0, 0.8);
+	    margin: 15px 0;
     }
 }
 
@@ -453,8 +505,7 @@ header{
 		background: linear-gradient(90deg,#504DC2 20.44%,#5F12D0 80.91%),#C4C4C4;
 	}
 	.button{
-		padding: 15px 25px;
-	    font-size: 0.8rem;
+		padding: 15px 25px; 
 	}
 	.btn-block_inPhone_centralized{
 		text-align: center;
@@ -498,7 +549,7 @@ header{
 	}
 
 	.projects{
-		.j-content(normal);
+		.j-content(center);
 		-webkit-flex-wrap: wrap;
 		    -ms-flex-wrap: wrap;
 		        flex-wrap: wrap;
@@ -506,6 +557,7 @@ header{
 	.project{
 	    width: 30%;
 	    padding: 10px;
+        text-align: center;
 	}
 	.specialization-block{
 		&__title{
